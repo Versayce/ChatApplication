@@ -11,7 +11,7 @@ if environment == 'production':
     server_users.schema = SCHEMA
     
 class PmServer(db.Model):
-    __tablename__ = 'servers'
+    __tablename__ = 'pm_servers'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
