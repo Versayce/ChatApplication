@@ -1,0 +1,186 @@
+/* TODO Add site wide styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+h1 {
+    font-family: 'Kanit', sans-serif;
+    font-size: 65px;
+}
+
+button {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: darkorange;
+}
+
+.private-message-heading {
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding: .5rem 0;
+    background-color: #454545;
+    color: white;
+}
+
+
+.private-messaging {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    border: 1px solid black;
+    background-color: rgb(90,90,90);
+}
+
+.private-message-name {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+.private-message-options {
+    margin: 10px;
+}
+
+.private-message-options:hover {
+    background-color: grey;
+    border-radius: 50px 0 0 50px;
+}
+
+.user-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-image-and-name-container {
+    display: flex;
+    align-items: center;
+    width: 7rem;
+}
+
+.user-name {
+    margin-left: .6rem;
+    width: max-content;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.private-server-imagename {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: 'Unbounded', cursive;
+    font-size: 20px;
+    background-color: orange;
+    color: white;
+    border-radius: 50px;
+}
+
+.private-server-imagename:hover {
+    border-radius: 30%;
+}
+
+.channels-container {
+    width: 13rem;
+    border-top: 1px solid black;
+    height: 80%;
+}
+
+.user-info {
+    height: 10%;
+    width: 100%;
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.server-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(241, 241, 241);
+    margin: 10px;
+}
+
+.logout-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.currentuser-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin: 10px 0px;
+}
+
+.logout-username {
+    margin: 9px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.logout-button {
+    width: 100%;
+    display: flex;
+    bottom: 0;
+    align-self: center;
+    background-color: transparent;
+    border-radius: 25px;
+    border: none;
+    font-family: sans-serif;
+    width: inherit;
+    color: white;
+}
+
+.logout-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-button-container:hover {
+    background-color: grey;
+}
+
+.current-user-image {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin: 7px;
+}
+
+
+
+.server-option-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+
+}
+
+.error-messages {
+    max-width: 19rem;
+    color: white;
+}
+
+.sign-up-label {
+    min-width: 20rem;
+}
