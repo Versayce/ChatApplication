@@ -14,8 +14,8 @@ class PmMessage(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
-    chat = db.relationship('PmChat', back_populates='messages')
-    author = db.relationship('User', back_populates='messages')
+    chat = db.relationship('PmChat', back_populates='pm_messages')
+    author = db.relationship('User', back_populates='pm_messages')
     # images = db.relationship('MessageImage', back_populates='message', cascade="all, delete")
 
 
