@@ -9,7 +9,7 @@ class PmMessage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(750))
-    chat_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=False)
+    chat_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pm_chats.id')), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)

@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
 from .server import server_users
+from .pm_chat import chat_users
 import random
 
 profile_images = [
@@ -36,8 +37,9 @@ class User(db.Model, UserMixin):
 
     server = db.relationship('Server', back_populates='owner')
     messages = db.relationship('Message', back_populates='author')
-    pm_messages = db.relationship('PmMessage', back_populates='author')
     servers = db.relationship('Server', secondary=server_users, back_populates="users")
+    pm_chats = db.relationship('PmChat', secondary=chat_users, back_populates="users")
+    pm_messages = db.relationship('PmMessage', back_populates='author')
 
     @property
     def password(self):

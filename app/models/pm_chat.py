@@ -19,7 +19,7 @@ class PmChat(db.Model):
     name = db.Column(db.String(255), nullable=False)
     
     users = db.relationship('User', secondary=chat_users, back_populates="pm_chats", cascade="all, delete")
-    messages = db.relationship('PmMessage', back_populates='chat', cascade="all, delete")
+    pm_messages = db.relationship('PmMessage', back_populates='chat', cascade="all, delete")
 
     def to_dict(self):
         return {
