@@ -36,6 +36,7 @@ class User(db.Model, UserMixin):
 
     server = db.relationship('Server', back_populates='owner')
     messages = db.relationship('Message', back_populates='author')
+    pm_messages = db.relationship('PmMessage', back_populates='author')
     servers = db.relationship('Server', secondary=server_users, back_populates="users")
 
     @property
