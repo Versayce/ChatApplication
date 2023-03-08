@@ -29,7 +29,6 @@ def seed_users():
         email='mike@tyson.com', 
         password='password', 
         profile_img ='https://th.bing.com/th/id/R.d2ad9ccdcfb1d4c0d3e3b4ede417821d?rik=QVLgnfjq1bpj4A&pid=ImgRaw&r=0',
-        chat_id=1
     )
     
     pidgeon = User(
@@ -37,7 +36,6 @@ def seed_users():
         email='tysonpidgeon@tyson.com', 
         password='password', 
         profile_img ='https://i.ytimg.com/vi/n1Hu2SScGj8/maxresdefault.jpg',
-        chat_id=2
     )
     
     demo_user_1 = User(
@@ -45,7 +43,6 @@ def seed_users():
         email='demo1@aa.io', 
         password='password', 
         profile_img='https://th.bing.com/th/id/OIP.LVqQLfgbYt7WWYEgOPBlMQAAAA?w=138&h=169&c=7&r=0&o=5&pid=1.7',
-        chat_id=1
     )
     
     demo_user_2 = User(
@@ -53,7 +50,6 @@ def seed_users():
         email='demo2@aa.io', 
         password='password',  
         profile_img='https://th.bing.com/th/id/OIP.nGeihD1R_Un6qL5t4fdeyAHaEK?pid=ImgDet&rs=1',
-        chat_id=2
     )
 
     db.session.add(dogg)

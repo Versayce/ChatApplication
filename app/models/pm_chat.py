@@ -22,12 +22,12 @@ class PmChat(db.Model):
     
     # users = db.relationship('User', back_populates='chat')
     
-    chat_users = db.relationship('User', secondary=chat_users, back_populates="pm_chats", cascade="all, delete")
+    pmchat_users = db.relationship('User', secondary=chat_users, back_populates="pm_chats", cascade="all, delete")
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'users': [user.to_dict_pm() for user in self.chat_users],
+            'users': [user.to_dict_pm() for user in self.pmchat_users],
             'messages': [message.to_dict() for message in self.pm_messages],
         }

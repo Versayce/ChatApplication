@@ -49,6 +49,8 @@ def seed_pm_messages():
     db.session.add(pm_message11)
     db.session.commit()
     
+    print('Pm Chat Messages Seeded')
+    
 # def seed_pm_message_images():
 #     image1 = MessageImage(
 #         image_url='/static/images/message_images/assault-dog.jpeg', message_id=3

@@ -3,6 +3,6 @@ from wtforms import StringField, SubmitField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, URL
 
 
-class ChatForm(FlaskForm):
+class PmChatForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -4,7 +4,7 @@ from wtforms import StringField, SubmitField, TextField, BooleanField, IntegerFi
 from wtforms.validators import DataRequired, URL
 
 
-class MessageForm(FlaskForm):
+class PmMessageForm(FlaskForm):
     body = StringField('Message', validators=[DataRequired()])
     # image_url = StringField('Image', validators=[URL()])
     channel_id = IntegerField('Channel Id')

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 84ab4bb58237
+Revision ID: 71430d8fde5d
 Revises: 
-Create Date: 2023-03-07 17:36:29.607869
+Create Date: 2023-03-07 19:30:18.184248
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '84ab4bb58237'
+revision = '71430d8fde5d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,11 +31,16 @@ def upgrade():
     sa.Column('profile_img', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.Column('chat_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['chat_id'], ['pm_chats.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+    op.create_table('chat_users',
+    sa.Column('chat_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['chat_id'], ['pm_chats.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('chat_id', 'user_id')
     )
     op.create_table('pm_messages',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -103,6 +108,7 @@ def downgrade():
     op.drop_table('channels')
     op.drop_table('servers')
     op.drop_table('pm_messages')
+    op.drop_table('chat_users')
     op.drop_table('users')
     op.drop_table('pm_chats')
     # ### end Alembic commands ###

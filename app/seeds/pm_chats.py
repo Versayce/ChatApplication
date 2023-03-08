@@ -19,11 +19,11 @@ def seed_pm_chats():
     demo2 = User.query.filter(User.username == 'DemoUser2').first()
     
     
-    # tyson.chats.append(pm_chat1)
-    # pidgeon.chats.append(pm_chat2)
-    # demo1.chats.append(pm_chat1)
-    # demo2.chats.append(pm_chat2)
-    # print('============ SEEDING CHAT DATA ============', '\n', demo1.pm_chats[0].to_dict(), '\n', '============ SEEDING CHAT DATA ============')
+    tyson.pm_chats.append(pm_chat1)
+    pidgeon.pm_chats.append(pm_chat2)
+    demo1.pm_chats.append(pm_chat1)
+    demo2.pm_chats.append(pm_chat2)
+    print('============ SEEDING CHAT DATA ============', '\n', demo1.pm_chats[0].to_dict(), '\n', '============ SEEDING CHAT DATA ============')
 
     for chat in all_chats:
         db.session.add(chat)

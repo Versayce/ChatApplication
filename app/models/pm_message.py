@@ -27,5 +27,5 @@ class PmMessage(db.Model):
             'authorId': self.author_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'author': self.author.to_dict()
+            'author': self.author.to_dict_pm()
         }
