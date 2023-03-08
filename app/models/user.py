@@ -62,9 +62,9 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profileImg': self.profile_img,
-            'createdAt': self.created_at,
-            'updatedAt': self.updated_at,
+            'profile_img': self.profile_img,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
             'servers': [server.to_dict() for server in self.servers],
             'pmChats': [chat.to_dict() for chat in self.pm_chats]
         }
