@@ -23,7 +23,7 @@ class PmMessage(db.Model):
         return {
             'id': self.id,
             'body': self.body,
-            'channelId': self.channel_id,
+            'chatId': self.chat_id,
             'authorId': self.author_id,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,

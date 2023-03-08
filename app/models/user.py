@@ -74,5 +74,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'profileImg': self.profile_img,
-            'pmMessages': [message.to_dict() for message in self.pm_messages]
+            # 'pmMessages': [message.to_dict() for message in self.pm_messages]
         }

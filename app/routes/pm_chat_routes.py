@@ -13,7 +13,7 @@ def pm_chat_by_id(id):
 
         if request.method == 'GET':
             pm_chat_dict = pm_chat.to_dict()
-            pm_chat_dict['pm_messages'] = [message.to_dict() for message in pm_chat.messages]
+            # pm_chat_dict['pm_messages'] = [message.to_dict() for message in pm_chat.pm_messages]
             return pm_chat_dict
 
         if request.method == 'PUT':
