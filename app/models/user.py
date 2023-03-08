@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
 from .server import server_users
-from .pm_chat import chat_users
+# from .pm_chat import chat_users
 import random
 
 profile_images = [
@@ -38,8 +38,13 @@ class User(db.Model, UserMixin):
     server = db.relationship('Server', back_populates='owner')
     messages = db.relationship('Message', back_populates='author')
     servers = db.relationship('Server', secondary=server_users, back_populates="users")
-    pm_chats = db.relationship('PmChat', secondary=chat_users, back_populates="users")
+    
     pm_messages = db.relationship('PmMessage', back_populates='author')
+    
+    # chat_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("pm_chats.id")), nullable=True)
+    # chat = db.relationship('PmChat', back_populates='users')
+    
+    pm_chats = db.relationship('PmChat', secondary=chat_users, back_populates="chat_users")
 
     @property
     def password(self):
@@ -52,7 +57,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
+    def to_dict(self,):
         return {
             'id': self.id,
             'username': self.username,
@@ -60,5 +65,14 @@ class User(db.Model, UserMixin):
             'profile_img': self.profile_img,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'servers': [server.to_dict() for server in self.servers]
+            'servers': [server.to_dict() for server in self.servers],
+            'pmChats': [chat.to_dict() for chat in self.pm_chats]
+        }
+
+    def to_dict_pm(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profile_img': self.profile_img,
+            # 'pmChats': [chat.to_dict() for chat in self.pm_chats]
         }
