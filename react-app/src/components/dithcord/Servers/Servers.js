@@ -32,9 +32,7 @@ function Servers({ user, servers }) {
 
     return (
         <ServerWrapper>
-            <PmChat> 
-                PM's
-            </PmChat>
+            <PmChatButton>PM's</PmChatButton>
             <AllServersModal />
             <NewServerFormModal />
             {servers && servers?.map((server) => (
@@ -56,7 +54,7 @@ function Servers({ user, servers }) {
 export default Servers
 
 
-const PmChat = styled.div`
+const PmChatButton = styled.button`
     box-sizing: border-box;
     display: flex;
     align-items: center;
