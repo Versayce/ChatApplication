@@ -32,7 +32,6 @@ def pm_message_by_id(id):
 
         if request.method == 'GET':
             pm_message_dict = pm_message.to_dict()
-            pm_message_dict['author'] = pm_message.author.to_dict()
             return pm_message_dict
 
         if request.method == 'DELETE':

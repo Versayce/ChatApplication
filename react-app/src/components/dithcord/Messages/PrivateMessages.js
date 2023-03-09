@@ -1,14 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
 
-function PrivateMessages({ server }) {
+function PrivateChats() {
     // console.log('', '\n', '--------------PM COMPONENT DATA--------------', '\n', '**DATA GOES HERE**', '\n', '')
 
     return (
-        <div>
+        <PmChat>
             
-        </div>
+        </PmChat>
     )
 }
 
 
-export default PrivateMessages
+export default PrivateChats
+
+
+const PmChat = styled.div`
+    display: flex;
+    justify-content: center;
+`
