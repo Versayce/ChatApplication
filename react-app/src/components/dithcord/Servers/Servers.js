@@ -6,6 +6,7 @@ import { getAllChannelsByServerId, getChannel, loadChannel } from '../../../stor
 import { clearMessages, getChannelMessages } from '../../../store/message';
 import NewServerFormModal from '../Forms/ServerForm/Add/NewServerFormModal'
 import AllServersModal from './AllServersList';
+import PrivateMessaging from '../Messages/PrivateMessages'
 
 function Servers({ user, servers }) {
     const dispatch = useDispatch()
@@ -30,6 +31,7 @@ function Servers({ user, servers }) {
 
     return (
         <ServerWrapper>
+            <PrivateMessaging />
             <AllServersModal />
             <NewServerFormModal />
             {servers && servers?.map((server) => (
