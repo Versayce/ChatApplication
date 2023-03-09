@@ -1,5 +1,6 @@
 import React from 'react';
 import { ServerWrapper, ImageWrapper, ServerImageWrapper } from '../DithcordStyles';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getOneServer } from '../../../store/server';
 import { getAllChannelsByServerId, getChannel, loadChannel } from '../../../store/channel';
@@ -31,21 +32,20 @@ function Servers({ user, servers }) {
 
     return (
         <ServerWrapper>
-            <PrivateMessaging />
+            <PmChat> 
+                PM's
+            </PmChat>
             <AllServersModal />
             <NewServerFormModal />
             {servers && servers?.map((server) => (
                 <div onClick={() => oneServer(server.id, server.channels[0]?.id)} key={server.id}>
-                    {/* <h2>{server.name}</h2> */}
-                        {server.serverImage.length === 3 ? (
+                        {server.serverImage.length === 3 ? 
                             <ImageWrapper>
                                 <div className='private-server-imagename'>
-                                {server.serverImage}
+                                    {server.serverImage}
                                 </div>
-                            </ImageWrapper>
-                        ) : (
-                    <ImageWrapper as="img" src={server.serverImage} />
-                        )}
+                            </ImageWrapper> : <ImageWrapper as="img" src={server.serverImage} />
+                        }
                 </div>
             ))}
         </ServerWrapper>
@@ -54,3 +54,19 @@ function Servers({ user, servers }) {
 
 
 export default Servers
+
+
+const PmChat = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    border: 2px solid black;
+    border-radius: 50px;
+    margin: .3rem 1rem;
+    background-color: rgba(30, 30, 30, 1);
+    color: rgba(159, 159, 159, 1);
+    font-size: 10pt;
+`
