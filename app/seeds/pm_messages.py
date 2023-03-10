@@ -31,10 +31,6 @@ def seed_pm_messages():
     db.session.add(pm_message5)
     db.session.add(pm_message6)
     db.session.add(pm_message7)
-    db.session.add(pm_message8)
-    db.session.add(pm_message9)
-    db.session.add(pm_message10)
-    db.session.add(pm_message11)
     db.session.commit()
     
     print('Pm Chat Messages Seeded')
