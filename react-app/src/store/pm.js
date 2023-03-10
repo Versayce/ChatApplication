@@ -2,7 +2,7 @@ const LOAD_ALL_CHATS = 'chats/getAllChats';
 const LOAD_CHAT = 'chats/loadChat';
 const ADD_CHAT = 'chats/addChat';
 const DELETE_CHAT = 'chats/deleteChat';
-const CLEAR_CHATS = 'chats/clearChats';
+const CLEAR_ONE_CHATS = 'chats/clearChats';
 const CLEAR_ALL_CHATS = 'chats/clearAllChats';
 
 //------------------------------   ACTIONS   ------------------------------//
@@ -35,9 +35,9 @@ export const deleteChat = (chatId) => {
     };
 };
 
-export const clearChats = () => {
+export const clearOneChats = () => {
     return {
-        type: CLEAR_CHATS,
+        type: CLEAR_ONE_CHATS,
         empty
     }
 }
@@ -131,7 +131,7 @@ const chatReducer = (state = initialState, action) => {
                 return newState
             }
             
-        case CLEAR_CHATS:
+        case CLEAR_ONE_CHATS:
             {
                 const newState = { allChats: {...state.allChats}, oneChat: {}}
                 return newState
