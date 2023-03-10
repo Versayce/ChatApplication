@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { Wrapper } from './DithcordStyles';
-import PrivateMessaging from './Messages/PrivateMessages'
 import Servers from './Servers/Servers'
 import CurrentServer from './Servers/CurrentServer'
 import { getAllServersByUserId } from '../../store/server';
@@ -27,7 +26,6 @@ function Dithcord() {
 
     return(
         <Wrapper>
-            <PrivateMessaging />
             <Servers user={currentUser} servers={userServers} />
             <CurrentServer server={currentServer}/>
             <UsersList />

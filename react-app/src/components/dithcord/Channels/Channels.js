@@ -1,27 +1,39 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannel } from '../../../store/channel';
+import { getChat } from '../../../store/pm';
 import { getChannelMessages } from '../../../store/message';
 import AddChannelFormModal from '../Forms/ChannelForm/Add/AddChannelFormModal';
 import EditChannelFormModal from '../Forms/ChannelForm/Edit/EditChannelFormModal';
 import ServerDropDownMenu from '../Servers/ServerDropDownMenu';
 import DeleteChannelButton from './DeleteChannelButton';
+import DeleteChatButton from './DeleteChatButton';
 import LogoutButton from '../../auth/LogoutButton';
 import styled from 'styled-components';
 
 function Channels({ channels }) {
     const dispatch = useDispatch();
+    const currentChatsObj = useSelector(state => state.pmchatrooms.allChats)
+    const currentChats = Object.values(currentChatsObj)
     const currentChannels = Object.values(channels)
     const currentServerObj = useSelector(state => state.servers.oneServer)
     const currentServer = Object.values(currentServerObj)
     const sessionUser = useSelector(state => state.session.user)
 
-    // console.log('INSIDE OF CHANNELS COMPONENT', currentServer[0])
+    console.log('INSIDE OF CHANNELS COMPONENT', currentChats)
 
     const getOneChannel = (channelId) => {
         if (channelId) {
             dispatch(getChannel(channelId))
             dispatch(getChannelMessages(channelId))
+            // socket.emit("join", {user: currentUser.username, roomId: channelId})
+        }
+    }
+
+    const getOneChat = (chatId) => {
+        if (chatId) {
+            dispatch(getChat(chatId))
+            // dispatch(getChatMessages(chatId))
             // socket.emit("join", {user: currentUser.username, roomId: channelId})
         }
     }
@@ -35,6 +47,21 @@ function Channels({ channels }) {
                 </div>
                 <ServerDropDownMenu />
             </DropDown>
+
+            <ChatsContainer>
+                {currentChats && currentChats.map((chat) => (
+                    <ChannelOptions key={chat.id} >
+                        <Chat onClick={() => getOneChat(chat.id)} key={chat.id}>
+                            {/* {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', channel, '\n', '')} */}
+                            <h3 key={chat.id}>{chat.name}</h3>
+                        </Chat>
+                        
+                        <ChannelOptionButtons>
+                            <DeleteChatButton key={chat.id} chatId={chat.id} />
+                        </ChannelOptionButtons>
+                    </ChannelOptions>
+                ))}
+            </ChatsContainer>
 
             <ChannelsContainer>
                 {currentChannels && currentChannels.map((channel) => (
@@ -52,10 +79,12 @@ function Channels({ channels }) {
                                         <DeleteChannelButton key={channel.id} channelId={channel.id} />
                                     </ChannelOptionButtons>
                                 </div>
-                            )}
+                            )
+                        }
                     </ChannelOptions>
                 ))}
             </ChannelsContainer>
+            
             <UserInfo>
                 <div className="logout-div">
                     <div className='currentuser-info'>
@@ -72,7 +101,7 @@ function Channels({ channels }) {
 }
 
 
-const ChannelsContainer = styled.div`
+const ChannelsContainer = styled.div `
     width: 100%;
     background-color: rgba(49, 49, 49, 0.8);
     height: 90%;
@@ -82,18 +111,34 @@ const ChannelsContainer = styled.div`
     box-sizing: border-box;
 `
 
-const Channel = styled.div`
+const ChatsContainer = styled.div `
+    width: 100%;
+    background-color: rgba(49, 49, 49, 0.8);
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+`
+
+const Channel = styled.div `
     box-sizing: border-box;
     color: rgba(178, 178, 178, 1);
     margin: 10px 20px;
 `
 
-const DropDown = styled.div`
+const Chat = styled.div `
+    box-sizing: border-box;
+    color: rgba(178, 178, 178, 1);
+    margin: 10px 20px;
+`
+
+const DropDown = styled.div `
     background-color: #454545;
     height: fit-content;
 `
 
-const UserInfo = styled.div`
+const UserInfo = styled.div `
     width: 100%;
     height: 168px;
     display: flex;
@@ -102,7 +147,7 @@ const UserInfo = styled.div`
     position: static;
 `
 
-const ChannelOptions = styled.div`
+const ChannelOptions = styled.div `
     box-sizing: border-box;
     display: flex;
     width: 100%;
@@ -116,7 +161,7 @@ const ChannelOptions = styled.div`
         cursor: pointer;
     }
 `
-const ChannelOptionButtons = styled.div`
+const ChannelOptionButtons = styled.div `
     display: flex;
     flex-direction: row;
     gap: 5px;

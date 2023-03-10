@@ -4,12 +4,14 @@ import session from './session'
 import serverReducer from './server'
 import channelReducer from './channel';
 import messageReducer from './message';
+import chatReducer from './pm';
 
 const rootReducer = combineReducers({
   session,
   servers: serverReducer,
   channels: channelReducer,
-  messages: messageReducer
+  pmchatrooms: chatReducer,
+  messages: messageReducer,
 });
 
 
