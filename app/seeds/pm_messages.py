@@ -23,18 +23,6 @@ def seed_pm_messages():
     pm_message7 = PmMessage(
         body='Test7', chat_id=2, author_id=1,
     )
-    pm_message8 = PmMessage(
-        body='Test8', chat_id=3, author_id=5,
-    )
-    pm_message9 = PmMessage(
-        body='Test9', chat_id=3, author_id=1,
-    )
-    pm_message10 = PmMessage(
-        body='Test10', chat_id=3, author_id=5,
-    )
-    pm_message11 = PmMessage(
-        body='Test11', chat_id=3, author_id=1,
-    )
     
     db.session.add(pm_message1)
     db.session.add(pm_message2)
