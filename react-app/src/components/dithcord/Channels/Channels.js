@@ -36,6 +36,10 @@ function Channels({ channels }) {
                 <ServerDropDownMenu />
             </DropDown>
 
+            <ChatsContainer>
+                
+            </ChatsContainer>
+
             <ChannelsContainer>
                 {currentChannels && currentChannels.map((channel) => (
                     <ChannelOptions key={channel.id} >
@@ -73,7 +77,7 @@ function Channels({ channels }) {
 }
 
 
-const ChannelsContainer = styled.div`
+const ChannelsContainer = styled.div `
     width: 100%;
     background-color: rgba(49, 49, 49, 0.8);
     height: 90%;
@@ -83,18 +87,28 @@ const ChannelsContainer = styled.div`
     box-sizing: border-box;
 `
 
-const Channel = styled.div`
+const ChatsContainer = styled.div `
+    width: 100%;
+    background-color: rgba(49, 49, 49, 0.8);
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+`
+
+const Channel = styled.div `
     box-sizing: border-box;
     color: rgba(178, 178, 178, 1);
     margin: 10px 20px;
 `
 
-const DropDown = styled.div`
+const DropDown = styled.div `
     background-color: #454545;
     height: fit-content;
 `
 
-const UserInfo = styled.div`
+const UserInfo = styled.div `
     width: 100%;
     height: 168px;
     display: flex;
@@ -103,7 +117,7 @@ const UserInfo = styled.div`
     position: static;
 `
 
-const ChannelOptions = styled.div`
+const ChannelOptions = styled.div `
     box-sizing: border-box;
     display: flex;
     width: 100%;
@@ -117,7 +131,7 @@ const ChannelOptions = styled.div`
         cursor: pointer;
     }
 `
-const ChannelOptionButtons = styled.div`
+const ChannelOptionButtons = styled.div `
     display: flex;
     flex-direction: row;
     gap: 5px;

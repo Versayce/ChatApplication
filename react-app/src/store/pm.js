@@ -38,14 +38,12 @@ export const deleteChat = (chatId) => {
 export const clearOneChats = () => {
     return {
         type: CLEAR_ONE_CHATS,
-        empty
     }
 }
 
 export const clearAllChats = () => {
     return {
         type: CLEAR_ALL_CHATS,
-        empty
     }
 }
 
@@ -102,7 +100,8 @@ const chatReducer = (state = initialState, action) => {
         case LOAD_ALL_CHATS:
             {
                 const newState = { allChats: {}, oneChat: {} };
-                action.channels.channels.forEach(chat => {
+                console.log('chat reducer::::::', action.chats)
+                action.chats.chats.forEach(chat => {
                     newState.allChats[chat.id] = chat
                 });
                 return newState;

@@ -30,7 +30,7 @@ def pm_chat_by_user_id(id):
     # servers = User.query(Server).join(User, User.id == Server.user_id).all()
     user = User.query.get(id)
     pm_chats = PmChat.query.filter(PmChat.pmchat_users.contains(user)).all()
-    return { 'userPmRooms': [chat.to_dict() for chat in pm_chats]}
+    return { 'chats': [chat.to_dict() for chat in pm_chats]}
 
 
 @user_routes.route('/<int:user_id>/servers/<int:server_id>', methods=['POST'])

@@ -3,7 +3,7 @@ const LOAD_CHANNEL = 'channels/loadChannel';
 const ADD_CHANNEL = 'channels/addChannel';
 const EDIT_CHANNEL = 'channels/editChannel';
 const DELETE_CHANNEL = 'channels/deleteChannel';
-const CLEAR_CHANNELS = 'channels/clearChannels'
+const CLEAR_CHANNEL = 'channels/clearChannels'
 const CLEAR_ALL_CHANNELS = 'channels/clearAllChannels'
 
 //------------------------------   ACTIONS   ------------------------------//
@@ -43,17 +43,15 @@ export const deleteChannel = (channelId) => {
     };
 };
 
-export const clearChannels = (empty = {}) => {
+export const clearChannel = () => {
     return {
-        type: CLEAR_CHANNELS,
-        empty
+        type: CLEAR_CHANNEL,
     }
 }
 
-export const clearAllChannels = (empty = {}) => {
+export const clearAllChannels = () => {
     return {
         type: CLEAR_ALL_CHANNELS,
-        empty
     }
 }
 
@@ -163,7 +161,7 @@ const channelReducer = (state = initialState, action) => {
                 return newState
             }
             
-        case CLEAR_CHANNELS:
+        case CLEAR_CHANNEL:
             {
                 const newState = { allChannels: {...state.allChannels}, oneChannel: {}}
                 return newState

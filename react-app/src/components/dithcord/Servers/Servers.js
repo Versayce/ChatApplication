@@ -3,20 +3,25 @@ import { ServerWrapper, ImageWrapper, ServerImageWrapper } from '../DithcordStyl
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { getOneServer } from '../../../store/server';
-import { getAllChannelsByServerId, getChannel, loadChannel } from '../../../store/channel';
+import { clearAllChannels, getAllChannelsByServerId, getChannel, loadChannel } from '../../../store/channel';
 import { clearMessages, getChannelMessages } from '../../../store/message';
 import NewServerFormModal from '../Forms/ServerForm/Add/NewServerFormModal'
 import AllServersModal from './AllServersList';
 import PrivateMessaging from '../Messages/PrivateMessages'
+import { getAllChatsByUserId } from '../../../store/pm';
 
 function Servers({ user, servers }) {
     const dispatch = useDispatch()
 
-    // console.log('', '\n', '--------------SERVERS COMPONENT DATA--------------', '\n', currentServers, '\n', '')
+    console.log('', '\n', '--------------SERVERS COMPONENT DATA--------------', '\n', user, '\n', '')
 
     const handlePm = () => {
-        // clear all server channels first
-        // handle grabbing all pm chat rooms here
+        // clear all server channels and channel messages + pm messages first
+        dispatch(clearMessages())
+        // dispatch(clearPmMessages())
+        dispatch(clearAllChannels())
+        // handle grabbing all pm chat rooms by userId here:
+        dispatch(getAllChatsByUserId(user.id))
         return
     }
 

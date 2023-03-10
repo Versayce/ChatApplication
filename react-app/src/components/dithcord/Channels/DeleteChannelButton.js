@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { clearChannels, destroyChannel } from "../../../store/channel";
+import { clearChannel, destroyChannel } from "../../../store/channel";
 import { clearMessages } from "../../../store/message";
 
 import { ChannelButtons } from "../DithcordStyles";
@@ -16,7 +16,7 @@ const DeleteChannelButton = ({ channelId }) => {
     const deleteChannelButton = async (e) => {
         e.preventDefault();
         dispatch(clearMessages())
-        dispatch(clearChannels())
+        dispatch(clearChannel())
         dispatch(destroyChannel(channelId, currentServer[0]?.id));
     };
 

@@ -6,6 +6,7 @@ const LOAD_USER_SERVERS = 'servers/loadUserServers'
 const ADD_SERVER = 'server/add'
 const EDIT_SERVER = 'server/edit'
 const DELETE_SERVER = 'server/delete'
+const CLEAR_SERVER = 'server/clear'
 
 
 
@@ -50,6 +51,12 @@ export const removeServer = (serverId) => {
     return {
         type: DELETE_SERVER,
         serverId
+    }
+}
+
+export const clearServer = () => {
+    return {
+        type: CLEAR_SERVER,
     }
 }
 
@@ -238,6 +245,12 @@ const serverReducer = (state = initialState, action) => {
                 const newState = { allServers: {...state.allServers}, oneServer: {...state.oneServer}}
                 delete newState.allServers[action.serverId]
                 delete newState.oneServer[action.serverId]
+                return newState
+            }
+
+        case CLEAR_SERVER:
+            {
+                const newState = { allServers: {...state.allServers}, oneServer: {}}
                 return newState
             }
 
