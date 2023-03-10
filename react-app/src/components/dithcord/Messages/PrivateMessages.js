@@ -5,6 +5,8 @@ import styled from 'styled-components';
 function PrivateChats() {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
+
+    // get chats from currentUser inspect key below
     console.log('', '\n', '--------------PM COMPONENT DATA--------------', '\n', currentUser, '\n', '--------------PM COMPONENT DATA--------------')
     
     useEffect(() => {
@@ -21,7 +23,7 @@ function PrivateChats() {
 
 export default PrivateChats
 
-const PmChat = styled.div`
+const PmChat = styled.div `
     box-sizing: border-box;
     display: flex;
     align-items: center;

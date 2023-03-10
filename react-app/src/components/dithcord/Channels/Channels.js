@@ -56,6 +56,7 @@ function Channels({ channels }) {
                     </ChannelOptions>
                 ))}
             </ChannelsContainer>
+            
             <UserInfo>
                 <div className="logout-div">
                     <div className='currentuser-info'>
