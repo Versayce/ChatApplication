@@ -2,7 +2,7 @@ import React from 'react';
 import { ServerWrapper, ImageWrapper, ServerImageWrapper } from '../DithcordStyles';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { getOneServer } from '../../../store/server';
+import { clearServer, getOneServer } from '../../../store/server';
 import { clearAllChannels, getAllChannelsByServerId, getChannel, loadChannel } from '../../../store/channel';
 import { clearMessages, getChannelMessages } from '../../../store/message';
 import NewServerFormModal from '../Forms/ServerForm/Add/NewServerFormModal'
@@ -20,6 +20,7 @@ function Servers({ user, servers }) {
         dispatch(clearMessages())
         // dispatch(clearPmMessages())
         dispatch(clearAllChannels())
+        dispatch(clearServer())
         // handle grabbing all pm chat rooms by userId here:
         dispatch(getAllChatsByUserId(user.id))
         return

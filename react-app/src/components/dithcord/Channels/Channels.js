@@ -1,27 +1,39 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannel } from '../../../store/channel';
+import { getChat } from '../../../store/pm';
 import { getChannelMessages } from '../../../store/message';
 import AddChannelFormModal from '../Forms/ChannelForm/Add/AddChannelFormModal';
 import EditChannelFormModal from '../Forms/ChannelForm/Edit/EditChannelFormModal';
 import ServerDropDownMenu from '../Servers/ServerDropDownMenu';
 import DeleteChannelButton from './DeleteChannelButton';
+import DeleteChatButton from './DeleteChatButton';
 import LogoutButton from '../../auth/LogoutButton';
 import styled from 'styled-components';
 
 function Channels({ channels }) {
     const dispatch = useDispatch();
+    const currentChatsObj = useSelector(state => state.pmchatrooms.allChats)
+    const currentChats = Object.values(currentChatsObj)
     const currentChannels = Object.values(channels)
     const currentServerObj = useSelector(state => state.servers.oneServer)
     const currentServer = Object.values(currentServerObj)
     const sessionUser = useSelector(state => state.session.user)
 
-    // console.log('INSIDE OF CHANNELS COMPONENT', currentServer[0])
+    console.log('INSIDE OF CHANNELS COMPONENT', currentChats)
 
     const getOneChannel = (channelId) => {
         if (channelId) {
             dispatch(getChannel(channelId))
             dispatch(getChannelMessages(channelId))
+            // socket.emit("join", {user: currentUser.username, roomId: channelId})
+        }
+    }
+
+    const getOneChat = (chatId) => {
+        if (chatId) {
+            dispatch(getChat(chatId))
+            // dispatch(getChatMessages(chatId))
             // socket.emit("join", {user: currentUser.username, roomId: channelId})
         }
     }
@@ -37,7 +49,18 @@ function Channels({ channels }) {
             </DropDown>
 
             <ChatsContainer>
-                
+                {currentChats && currentChats.map((chat) => (
+                    <ChannelOptions key={chat.id} >
+                        <Chat onClick={() => getOneChat(chat.id)} key={chat.id}>
+                            {/* {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', channel, '\n', '')} */}
+                            <h3 key={chat.id}>{chat.name}</h3>
+                        </Chat>
+                        
+                        <ChannelOptionButtons>
+                            <DeleteChatButton key={chat.id} chatId={chat.id} />
+                        </ChannelOptionButtons>
+                    </ChannelOptions>
+                ))}
             </ChatsContainer>
 
             <ChannelsContainer>
@@ -56,7 +79,8 @@ function Channels({ channels }) {
                                         <DeleteChannelButton key={channel.id} channelId={channel.id} />
                                     </ChannelOptionButtons>
                                 </div>
-                            )}
+                            )
+                        }
                     </ChannelOptions>
                 ))}
             </ChannelsContainer>
@@ -98,6 +122,12 @@ const ChatsContainer = styled.div `
 `
 
 const Channel = styled.div `
+    box-sizing: border-box;
+    color: rgba(178, 178, 178, 1);
+    margin: 10px 20px;
+`
+
+const Chat = styled.div `
     box-sizing: border-box;
     color: rgba(178, 178, 178, 1);
     margin: 10px 20px;

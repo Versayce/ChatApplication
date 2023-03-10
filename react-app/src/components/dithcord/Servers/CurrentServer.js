@@ -7,12 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneServer } from '../../../store/server';
 
 
-const ChannelsWrapper = styled.div`
-display: flex;
-flex-direction: column;
-width: 25%;
-`
-
 function CurrentServer({ server }) {
     const dispatch = useDispatch();
     const serverChannels = useSelector((state) => state.channels.allChannels)
@@ -40,3 +34,10 @@ function CurrentServer({ server }) {
 
 
 export default CurrentServer
+
+
+const ChannelsWrapper = styled.div`
+display: flex;
+flex-direction: column;
+width: 25%;
+`
