@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import User, Server, db
+from app.models import User, Server, PmChat, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,6 +22,15 @@ def servers_by_user_id(id):
     user = User.query.get(id)
     servers = Server.query.filter(Server.users.contains(user)).all()
     return { 'userServers': [server.to_dict() for server in servers]}
+
+
+@user_routes.route('/<int:id>/chats')
+@login_required
+def pm_chat_by_user_id(id):
+    # servers = User.query(Server).join(User, User.id == Server.user_id).all()
+    user = User.query.get(id)
+    pm_chats = PmChat.query.filter(PmChat.pmchat_users.contains(user)).all()
+    return { 'userPmRooms': [chat.to_dict() for chat in pm_chats]}
 
 
 @user_routes.route('/<int:user_id>/servers/<int:server_id>', methods=['POST'])
