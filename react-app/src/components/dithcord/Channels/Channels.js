@@ -64,7 +64,7 @@ function Channels({ channels, toggleChat }) {
                     </ChannelOptions>
                 ))}
             </ChatsContainer>
-
+            // Render below if above condition is not met
             : <ChannelsContainer>
                 {currentChannels && currentChannels.map((channel) => (
                     <ChannelOptions key={channel.id} >
