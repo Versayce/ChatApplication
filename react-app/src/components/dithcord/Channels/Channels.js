@@ -52,8 +52,10 @@ function Channels({ channels }) {
                 {currentChats && currentChats.map((chat) => (
                     <ChannelOptions key={chat.id} >
                         <Chat onClick={() => getOneChat(chat.id)} key={chat.id}>
-                            {/* {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', channel, '\n', '')} */}
-                            <h3 key={chat.id}>{chat.name}</h3>
+                            {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', chat, '\n', '')}
+                            <h3 key={chat.id}>
+                                {sessionUser.username === chat.users[0].username ? chat.users[1].username : chat.users[0].username}
+                            </h3>
                         </Chat>
                         
                         <ChannelOptionButtons>
