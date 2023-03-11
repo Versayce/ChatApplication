@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { Wrapper } from './DithcordStyles';
 import Servers from './Servers/Servers'
@@ -9,6 +9,7 @@ import UsersList from '../UsersList';
 
 function Dithcord() {
     const dispatch = useDispatch();
+    const [ toggleChat, setToggleChat ] = useState(false)
 
     const currentUser = useSelector(state => state.session.user);
     const currentServerObj = useSelector(state => state.servers.oneServer);
@@ -17,7 +18,7 @@ function Dithcord() {
     const userServersObj = useSelector(state => state.servers.allServers);
     const userServers = Object.values(userServersObj)
 
-    // console.log('', '\n', '--------------MAIN COMPONENT DATA--------------', '\n', userServers, '\n', '');
+    console.log('', '\n', '--------------MAIN COMPONENT DATA--------------', '\n', toggleChat, '\n', '');
 
     useEffect(() => {
         // dispatch(getServers())
@@ -26,8 +27,8 @@ function Dithcord() {
 
     return(
         <Wrapper>
-            <Servers user={currentUser} servers={userServers} />
-            <CurrentServer server={currentServer}/>
+            <Servers user={currentUser} servers={userServers} setToggleChat={setToggleChat} />
+            <CurrentServer server={currentServer} toggleChat={toggleChat} />
             <UsersList />
         </Wrapper>
     )

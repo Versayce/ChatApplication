@@ -11,7 +11,7 @@ import DeleteChatButton from './DeleteChatButton';
 import LogoutButton from '../../auth/LogoutButton';
 import styled from 'styled-components';
 
-function Channels({ channels }) {
+function Channels({ channels, toggleChat }) {
     const dispatch = useDispatch();
     const currentChatsObj = useSelector(state => state.pmchatrooms.allChats)
     const currentChats = Object.values(currentChatsObj)
@@ -48,11 +48,11 @@ function Channels({ channels }) {
                 <ServerDropDownMenu />
             </DropDown>
 
-            <ChatsContainer>
+            {toggleChat === true ? <ChatsContainer>
                 {currentChats && currentChats.map((chat) => (
                     <ChannelOptions key={chat.id} >
                         <Chat onClick={() => getOneChat(chat.id)} key={chat.id}>
-                            {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', chat, '\n', '')}
+                            {/* {console.log('', '\n', '--------------CHAts COMPONENT DATA--------------', '\n', chat, '\n', '')} */}
                             <h3 key={chat.id}>
                                 {sessionUser.username === chat.users[0].username ? chat.users[1].username : chat.users[0].username}
                             </h3>
@@ -65,7 +65,7 @@ function Channels({ channels }) {
                 ))}
             </ChatsContainer>
 
-            <ChannelsContainer>
+            : <ChannelsContainer>
                 {currentChannels && currentChannels.map((channel) => (
                     <ChannelOptions key={channel.id} >
                         <Channel onClick={() => getOneChannel(channel.id)} key={channel.id}>
@@ -85,7 +85,7 @@ function Channels({ channels }) {
                         }
                     </ChannelOptions>
                 ))}
-            </ChannelsContainer>
+            </ChannelsContainer>}
             
             <UserInfo>
                 <div className="logout-div">

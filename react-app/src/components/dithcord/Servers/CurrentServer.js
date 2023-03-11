@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneServer } from '../../../store/server';
 
 
-function CurrentServer({ server }) {
+function CurrentServer({ server, toggleChat }) {
     const dispatch = useDispatch();
     const serverChannels = useSelector((state) => state.channels.allChannels)
     const currentChannel = useSelector((state) => state.channels.oneChannel)
@@ -24,7 +24,7 @@ function CurrentServer({ server }) {
     return (
         <>
         <ChannelsWrapper>
-            <Channels channels={serverChannels} server={currentServer}/>
+            <Channels channels={serverChannels} server={currentServer} toggleChat={toggleChat} />
         </ChannelsWrapper>
         <CurrentChannel channel={currentChannel}/>
         <ServerUsers />
