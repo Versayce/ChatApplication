@@ -47,7 +47,7 @@ function Channels({ channels, toggleChat }) {
                 </div>
                 <ServerDropDownMenu />
             </DropDown>
-
+            {/* TODO break down into smaller components */}
             {toggleChat === true ? <ChatsContainer>
                 {currentChats && currentChats.map((chat) => (
                     <ChannelOptions key={chat.id} >
