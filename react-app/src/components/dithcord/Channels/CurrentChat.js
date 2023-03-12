@@ -5,7 +5,7 @@ import { getChannelMessages } from '../../../store/message';
 import { MessageContainerWrapper } from '../DithcordStyles';
 
 
-function CurrentChat({ chat }) {
+function CurrentChat({ chat, toggleChat }) {
     const dispatch = useDispatch();
     const currentChat = useSelector(state => state.pmchatrooms.oneChat);
     // const chatMessages = useSelector(state => state.messages.chatMessages);
@@ -24,7 +24,7 @@ function CurrentChat({ chat }) {
 
     return (
         <MessageContainerWrapper>
-            <ChannelMessages messages={chatMessagesArray} chatId={currentChat.id} />
+            <ChannelMessages messages={chatMessagesArray} chatId={currentChat.id} toggleChat={toggleChat} />
         </MessageContainerWrapper>
     )
 }

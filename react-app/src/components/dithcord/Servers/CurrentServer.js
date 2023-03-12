@@ -27,7 +27,7 @@ function CurrentServer({ server, toggleChat }) {
         <ChannelsWrapper>
             <Channels channels={serverChannels} server={currentServer} toggleChat={toggleChat} />
         </ChannelsWrapper>
-        {toggleChat === false ? <CurrentChannel channel={currentChannel}/> : <CurrentChat />}
+        {toggleChat === false ? <CurrentChannel channel={currentChannel}/> : <CurrentChat toggleChat={toggleChat} />}
         <ServerUsers />
         </>
     )

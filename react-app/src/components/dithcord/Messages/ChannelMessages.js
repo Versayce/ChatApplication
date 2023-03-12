@@ -1,12 +1,15 @@
 import React from 'react';
 import Chat from '../LiveChat/Chat'
+import PmChat from '../LiveChat/PmChat';
 
 
-function ChannelMessages({ messages, channelId }) {
+function ChannelMessages({ messages, channelId, toggleChat }) {
     console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', messages, '\n', '')
 
     return (
-        <Chat newmessages={messages} />
+        <>
+        {toggleChat === true ? <Chat /> : <PmChat newmessages={messages} />}
+        </>
     )
 }
 
