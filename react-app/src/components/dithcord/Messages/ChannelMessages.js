@@ -4,7 +4,7 @@ import PmChat from '../LiveChat/PmChat';
 
 
 function ChannelMessages({ messages, toggleChat }) {
-    console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', toggleChat, '\n', '')
+    // console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', toggleChat, '\n', '')
 
     return (
         <>

@@ -18,7 +18,7 @@ const Chat = ({ newmessages }) => {
     const currentChannel = useSelector(state => state.channels.oneChannel)
     const channelMessages = currentChannel.messages
 
-    console.log('========CHAT========', newmessages)
+    // console.log('========CHAT========', newmessages)
 
     useEffect(() => {
         socket = io();
