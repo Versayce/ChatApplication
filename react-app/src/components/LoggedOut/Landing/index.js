@@ -27,7 +27,7 @@ const NotLogInLanding = () => {
                 <div className='top-portion-content'>
                     <h1 className='top-portion-heading'>IMAGINE A PLATHE...</h1>
                     <div className='top-portion-description'>
-                        <div style={{ width: '45rem', backgroundColor: 'rgba(0,0,0,.6)', borderRadius: '15px' }}>
+                        <div style={{ padding: '15px', width: '45rem', backgroundColor: 'rgba(0,0,0,.6)', borderRadius: '15px' }}>
                             ...where you can belong to a thchool club, a gaming group, or a worldwide art community. Where juth you and a handful of friendth can thpend time together. A place that maketh it eathy to talk every day and hang out more often.</div>
                     </div>
                     <div className='top-portion-buttons'>
