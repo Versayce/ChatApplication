@@ -3,10 +3,10 @@ import Chat from '../LiveChat/Chat'
 
 
 function ChannelMessages({ messages, channelId }) {
-    // console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', channelMessages, '\n', '')
+    console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', messages, '\n', '')
 
     return (
-        <Chat />
+        <Chat newmessages={messages} />
     )
 }
 

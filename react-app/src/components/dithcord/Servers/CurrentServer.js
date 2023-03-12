@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Channels from '../Channels/Channels'
 import CurrentChannel from '../Channels/CurrentChannel'
+import CurrentChat from '../Channels/CurrentChat';
 import ServerUsers from './ServerUsers';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneServer } from '../../../store/server';
@@ -26,7 +27,7 @@ function CurrentServer({ server, toggleChat }) {
         <ChannelsWrapper>
             <Channels channels={serverChannels} server={currentServer} toggleChat={toggleChat} />
         </ChannelsWrapper>
-        <CurrentChannel channel={currentChannel}/>
+        {toggleChat === false ? <CurrentChannel channel={currentChannel}/> : <CurrentChat />}
         <ServerUsers />
         </>
     )

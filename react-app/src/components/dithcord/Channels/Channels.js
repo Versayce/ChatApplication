@@ -33,6 +33,7 @@ function Channels({ channels, toggleChat }) {
     const getOneChat = (chatId) => {
         if (chatId) {
             dispatch(getChat(chatId))
+            // TODO add logic for showing chat messages when a pm chat is clicked
             // dispatch(getChatMessages(chatId))
             // socket.emit("join", {user: currentUser.username, roomId: channelId})
         }

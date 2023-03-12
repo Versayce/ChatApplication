@@ -8,7 +8,7 @@ import tysonify from '../../../tysonify-text';
 let socket;
 
 
-const Chat = ({ props }) => {
+const Chat = ({ newmessages }) => {
     const dispatch = useDispatch()
     let postedMessage;
     const [messages, setMessages] = useState([])
@@ -18,7 +18,7 @@ const Chat = ({ props }) => {
     const currentChannel = useSelector(state => state.channels.oneChannel)
     const channelMessages = currentChannel.messages
 
-    // console.log('========CHAT========', postedMessage)
+    console.log('========CHAT========', newmessages)
 
     useEffect(() => {
         socket = io();

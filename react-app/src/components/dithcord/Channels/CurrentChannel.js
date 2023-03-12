@@ -19,7 +19,7 @@ function CurrentChannel({ channel }) {
 
     }, [dispatch, currentChannel])
 
-    // console.log('', '\n', '--------------CURRENT CHANNELS COMPONENT DATA--------------', '\n', currentChannel, '\n', '')
+    // console.log('', '\n', '--------------CURRENT CHANNELS COMPONENT DATA--------------', '\n', channelMessagesArray, '\n', '')
 
     return (
         <MessageContainerWrapper>
