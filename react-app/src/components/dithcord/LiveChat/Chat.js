@@ -31,6 +31,7 @@ const Chat = ({ props }) => {
 
 
         return (() => {
+            socket.emit("leave", { user: currentUser.username, roomId: currentChannel.id })
             socket.disconnect()
             setMessages([])
         })

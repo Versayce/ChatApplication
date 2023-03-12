@@ -25,13 +25,13 @@ def channel_join(data):
     room = data["roomId"]
     join_room(room)
     send(name + ' has entered the room.', room=room)
-    print('=========== INSIDE OF OUR SOCKET JOIN ROUTE ==============', data)
+    print('=========== INSIDE OF OUR SOCKET JOIN ROUTE ==============', '\n', data, '\n', '=========== INSIDE OF OUR SOCKET JOIN ROUTE ==============')
     
 @socketio.on("leave")
 def channel_leave(data):
-    username = data['username']
-    room = data['room']
+    username = data['user']
+    room = data['roomId']
     leave_room(room)
     send(username + ' has left the room.', room=room)
-    print('===========***************************LEAVING ROOM**************************===========', data)
+    print('***************************LEAVING ROOM**************************','\n', data, '\n', '***************************LEAVING ROOM**************************')
     
