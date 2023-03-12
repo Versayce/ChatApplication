@@ -3,12 +3,12 @@ import Chat from '../LiveChat/Chat'
 import PmChat from '../LiveChat/PmChat';
 
 
-function ChannelMessages({ messages, channelId, toggleChat }) {
-    console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', messages, '\n', '')
+function ChannelMessages({ messages, toggleChat }) {
+    console.log('', '\n', '--------------CHANNEL MESSAGES COMPONENT DATA--------------', '\n', toggleChat, '\n', '')
 
     return (
         <>
-        {toggleChat === true ? <Chat /> : <PmChat newmessages={messages} />}
+        {toggleChat === false ? <Chat /> : <PmChat />}
         </>
     )
 }

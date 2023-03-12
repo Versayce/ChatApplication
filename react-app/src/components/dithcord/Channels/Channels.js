@@ -11,7 +11,7 @@ import DeleteChatButton from './DeleteChatButton';
 import LogoutButton from '../../auth/LogoutButton';
 import styled from 'styled-components';
 
-function Channels({ channels, toggleChat }) {
+function Channels({ channels, toggleChat, setToggleChat }) {
     const dispatch = useDispatch();
     const currentChatsObj = useSelector(state => state.pmchatrooms.allChats)
     const currentChats = Object.values(currentChatsObj)
@@ -24,6 +24,7 @@ function Channels({ channels, toggleChat }) {
 
     const getOneChannel = (channelId) => {
         if (channelId) {
+            setToggleChat(false)
             dispatch(getChannel(channelId))
             dispatch(getChannelMessages(channelId))
             // socket.emit("join", {user: currentUser.username, roomId: channelId})
@@ -32,8 +33,9 @@ function Channels({ channels, toggleChat }) {
 
     const getOneChat = (chatId) => {
         if (chatId) {
+            setToggleChat(true)
             dispatch(getChat(chatId))
-            // TODO add logic for showing chat messages when a pm chat is clicked
+            //TODO keep chat buttons from disappearing
             // dispatch(getChatMessages(chatId))
             // socket.emit("join", {user: currentUser.username, roomId: channelId})
         }

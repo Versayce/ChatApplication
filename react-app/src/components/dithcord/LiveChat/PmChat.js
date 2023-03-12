@@ -15,14 +15,14 @@ const PmChat = ({ newmessages }) => {
     const [chatInput, setChatInput] = useState("")
 
     const currentUser = useSelector(state => state.session.user)
-    const currentChannel = useSelector(state => state.channels.oneChannel) //TODO change to current chatroom
-    const channelMessages = currentChannel.messages //TODO ^ 
+    const currentChat = useSelector(state => state.pmchatrooms.oneChat) 
+    const chatMessages = currentChat.messages
 
-    console.log('========CHAT========', newmessages)
+    console.log('========PM CHAT========', chatMessages)
 
     useEffect(() => {
         socket = io();
-        socket.emit("join", { user: currentUser.username, roomId: currentChannel.id })
+        socket.emit("join", { user: currentUser.username, roomId: currentChat.id })
         socket.on("chat", (chat) => {
             // console.log("=====ON CHAT====", chat)
             setMessages(messages => [...messages, chat])
@@ -31,11 +31,11 @@ const PmChat = ({ newmessages }) => {
 
 
         return (() => {
-            socket.emit("leave", { user: currentUser.username, roomId: currentChannel.id })
+            socket.emit("leave", { user: currentUser.username, roomId: currentChat.id })
             socket.disconnect()
             setMessages([])
         })
-    }, [currentChannel.id, currentUser.username])
+    }, [currentChat.id, currentUser.username])
 
 
 
@@ -44,11 +44,11 @@ const PmChat = ({ newmessages }) => {
         e.preventDefault()
         postedMessage = {
             "body": tysonify(chatInput),
-            "channel_id": currentChannel.id,
+            "channel_id": currentChat.id,
             "author_id": currentUser.id
         }
         //emitting message
-        socket.emit("chat", { roomId: currentChannel.id, user: `${currentUser.username}`, msg: tysonify(chatInput) });
+        socket.emit("chat", { roomId: currentChat.id, user: `${currentUser.username}`, msg: tysonify(chatInput) });
         //clear input field
         dispatch(createMessage(postedMessage))
         setChatInput("")
@@ -69,13 +69,13 @@ const PmChat = ({ newmessages }) => {
                 </NewMessage>
 
                 <Message>
-                    {currentChannel && channelMessages && channelMessages.map(message => (
+                    {currentChat && chatMessages && chatMessages.map(message => (
                         <div key={message.id}>{`${message.author.username}: ${message.body}`}</div>
                         ))}
                 </Message>
             </MessageContainer>
         
-            {currentChannel.id && <MessageFormWrapper>
+            {currentChat.id && <MessageFormWrapper>
                 <form className='message-form' onSubmit={sendChat}>
 
                     <input className='message-input' value={chatInput} onChange={updateChatInput} />

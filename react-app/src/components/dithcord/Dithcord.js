@@ -9,7 +9,7 @@ import UsersList from '../UsersList';
 
 function Dithcord() {
     const dispatch = useDispatch();
-    const [ toggleChat, setToggleChat ] = useState(false)
+    const [ toggleChat, setToggleChat ] = useState(null)
 
     const currentUser = useSelector(state => state.session.user);
     const currentServerObj = useSelector(state => state.servers.oneServer);
@@ -28,7 +28,7 @@ function Dithcord() {
     return(
         <Wrapper>
             <Servers user={currentUser} servers={userServers} setToggleChat={setToggleChat} />
-            <CurrentServer server={currentServer} toggleChat={toggleChat} />
+            <CurrentServer server={currentServer} toggleChat={toggleChat} setToggleChat={setToggleChat} />
             <UsersList />
         </Wrapper>
     )

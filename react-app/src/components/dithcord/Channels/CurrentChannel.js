@@ -5,7 +5,7 @@ import { getChannelMessages } from '../../../store/message';
 import { MessageContainerWrapper } from '../DithcordStyles';
 
 
-function CurrentChannel({ channel }) {
+function CurrentChannel({ channel, toggleChat }) {
     const dispatch = useDispatch();
     const currentChannel = useSelector(state => state.channels.oneChannel);
     const channelMessages = useSelector(state => state.messages.channelMessages);
@@ -23,7 +23,7 @@ function CurrentChannel({ channel }) {
 
     return (
         <MessageContainerWrapper>
-            <ChannelMessages messages={channelMessagesArray} channelId={currentChannel.id} />
+            <ChannelMessages messages={channelMessagesArray} channelId={currentChannel.id} toggleChat={toggleChat} />
         </MessageContainerWrapper>
     )
 }
