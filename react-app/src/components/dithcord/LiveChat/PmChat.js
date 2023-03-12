@@ -15,8 +15,8 @@ const PmChat = ({ newmessages }) => {
     const [chatInput, setChatInput] = useState("")
 
     const currentUser = useSelector(state => state.session.user)
-    const currentChannel = useSelector(state => state.channels.oneChannel)
-    const channelMessages = currentChannel.messages
+    const currentChannel = useSelector(state => state.channels.oneChannel) //TODO change to current chatroom
+    const channelMessages = currentChannel.messages //TODO ^ 
 
     console.log('========CHAT========', newmessages)
 
