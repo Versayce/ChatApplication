@@ -4,6 +4,7 @@ import { editServer } from "./server"
 const LOAD_ONE_MESSAGE = 'messages/loadOne'
 const LOAD_CHANNEL_MESSAGES = 'messages/loadChannelMessages'
 const ADD_MESSAGE = 'messages/add'
+const ADD_PM_MESSAGE = 'pmMessages/add'
 const EDIT_MESSAGE = 'messages/edit'
 const DELETE_MESSAGE = 'messages/delete'
 const CLEAR_MESSAGES = 'messages/clearall'
@@ -33,6 +34,15 @@ export const addMessage = (message, channelId) => {
         channelId
     }
 }
+
+export const addPmMessage = (pmMessage, chatId) => {
+    return {
+        type: ADD_PM_MESSAGE,
+        pmMessage,
+        chatId
+    }
+}
+
 
 export const editMessage = (message) => {
     return {
@@ -92,6 +102,21 @@ export const createMessage = (message) => async (dispatch) => {
     }
 }
 
+export const createPmMessage = (message) => async (dispatch) => {
+    const { chatId } = message;
+    console.log('INSIDE OF THUNK', message)
+    const res = await fetch('/api/pm_messages/new', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(message)
+    })
+
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(addPmMessage(data, chatId))
+    }
+}
+
 export const deleteMessage = (messageId) => async (dispatch) => {
     const res = await fetch(`/api/messages/${messageId}`, {
         method: 'DELETE'
@@ -123,7 +148,7 @@ export const editMessageById = (message) => async (dispatch) => {
 
 //------------------------------   REDUCER   ------------------------------//
 
-const initialState = { channelMessages: {}, oneMessage: {} }
+const initialState = { channelMessages: {}, chatMessages: {}, oneMessage: {} }
 const messageReducer = (state = initialState, action) => {
     switch(action.type) {
 
@@ -146,9 +171,17 @@ const messageReducer = (state = initialState, action) => {
 
         case ADD_MESSAGE:
             {
-                console.log("IN REDUCER", action)
+                // console.log("IN REDUCER", action)
                 const newState = { channelMessages: {...state.channelMessages}, oneMessage: {...state.oneMessage}}
                 newState.channelMessages[action.message.id] = action.message
+                return newState
+            }
+        
+        case ADD_PM_MESSAGE:
+            {
+                console.log("IN REDUCER", action)
+                const newState = { channelMessages: {...state.channelMessages}, chatMessages: {...state.chatMessages}, oneMessage: {...state.oneMessage}}
+                newState.chatMessages[action.pmMessage.id] = action.pmMessage
                 return newState
             }
 

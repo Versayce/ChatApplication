@@ -7,6 +7,6 @@ from wtforms.validators import DataRequired, URL
 class PmMessageForm(FlaskForm):
     body = StringField('Message', validators=[DataRequired()])
     # image_url = StringField('Image', validators=[URL()])
-    channel_id = IntegerField('Channel Id')
+    chat_id = IntegerField('Chat Id')
     author_id = IntegerField('Author Id')
     submit = SubmitField('Submit')

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client'
-import { createMessage } from '../../../store/message';
+import { createPmMessage } from '../../../store/message';
 import styled from 'styled-components'
 import tysonify from '../../../tysonify-text';
 
@@ -18,7 +18,7 @@ const PmChat = () => {
     const currentChat = useSelector(state => state.pmchatrooms.oneChat) 
     const chatMessages = currentChat.messages
 
-    console.log('========PM CHAT========', currentChat)
+    console.log('========PM CHAT========', currentChat.id)
 
     useEffect(() => {
         socket = io();
@@ -50,7 +50,7 @@ const PmChat = () => {
         //emitting message
         socket.emit("pm_chat", { roomId: currentChat.id, user: `${currentUser.username}`, msg: tysonify(chatInput) });
         //clear input field
-        dispatch(createMessage(postedMessage)) //TODO create a different route for pm chat messages 
+        dispatch(createPmMessage(postedMessage)) //TODO create a different route for pm chat messages 
         setChatInput("")
     }
 

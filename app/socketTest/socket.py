@@ -41,18 +41,18 @@ def channel_leave(data):
 # Routes for pm chatrooms below: #
 @socketio.on("pm_chat")
 def handle_pm_chat(data):
-    room = data["roomId"]
+    room = f'pm{data["roomId"]}'
     emit("chat", data, room=room)
-    print('', '\n', '===========INSIDE OF CHAT ROUTE===========', data, '\n', '===========INSIDE OF CHAT ROUTE===========', '\n', '')
+    print('', '\n', '=========== INSIDE OF CHAT ROUTE ===========', '\n', data, '\n', '=========== INSIDE OF CHAT ROUTE ===========', '\n', '')
 
 
 @socketio.on("pm_join")
 def pm_chatroom_join(data):
     name = data["user"]
-    room = data["roomId"]
+    room = f'pm{data["roomId"]}'
     join_room(room)
     send(name + ' has entered the room.', room=room)
-    print('=========== SOCKET PM JOIN ==============', '\n', data, '\n', '=========== SOCKET PM JOIN ==============')
+    print('============= SOCKET PM JOIN ==============', '\n', room, '\n', '============= SOCKET PM JOIN ==============')
     
     
 @socketio.on("pm_leave")
@@ -61,4 +61,4 @@ def pm_chatroom_leave(data):
     room = data['roomId']
     leave_room(room)
     send(username + ' has left the room.', room=room)
-    print('*************LEAVING ROOM*************','\n', data, '\n', '*************LEAVING ROOM*************')
+    print('', '\n', '============= LEAVING ROOM ==============','\n', data, '\n', '============= LEAVING ROOM ==============', '\n', '')
