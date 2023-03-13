@@ -152,6 +152,8 @@ export const editServerById = (server) => async (dispatch) => {
 }
 
 
+//TODO replace below thunk and have private message chats be created with the backend routes
+//TODO thunk will require id's from both users and a name for the pm chat (concatenate both usernames together?)
 export const createPrivateServerAndChat = (user1, user2) => async (dispatch) => {
     const serverRes = await fetch('/api/servers/new', {
         method: 'POST',
