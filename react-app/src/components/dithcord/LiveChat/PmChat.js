@@ -8,7 +8,7 @@ import tysonify from '../../../tysonify-text';
 let socket;
 
 // TODO refactor component to take pmChatroom messages instead of channel messages.
-const PmChat = ({ newmessages }) => {
+const PmChat = () => {
     const dispatch = useDispatch()
     let postedMessage;
     const [messages, setMessages] = useState([])
@@ -22,7 +22,7 @@ const PmChat = ({ newmessages }) => {
 
     useEffect(() => {
         socket = io();
-        socket.emit("join", { user: currentUser.username, roomId: currentChat.id })
+        socket.emit("pm_join", { user: currentUser.username, roomId: currentChat.id })
         socket.on("chat", (chat) => {
             // console.log("=====ON CHAT====", chat)
             setMessages(messages => [...messages, chat])
@@ -31,7 +31,7 @@ const PmChat = ({ newmessages }) => {
 
 
         return (() => {
-            socket.emit("leave", { user: currentUser.username, roomId: currentChat.id })
+            socket.emit("pm_leave", { user: currentUser.username, roomId: currentChat.id })
             socket.disconnect()
             setMessages([])
         })
@@ -44,13 +44,13 @@ const PmChat = ({ newmessages }) => {
         e.preventDefault()
         postedMessage = {
             "body": tysonify(chatInput),
-            "channel_id": currentChat.id,
+            "chat_id": currentChat.id,
             "author_id": currentUser.id
         }
         //emitting message
-        socket.emit("chat", { roomId: currentChat.id, user: `${currentUser.username}`, msg: tysonify(chatInput) });
+        socket.emit("pm_chat", { roomId: currentChat.id, user: `${currentUser.username}`, msg: tysonify(chatInput) });
         //clear input field
-        dispatch(createMessage(postedMessage))
+        dispatch(createMessage(postedMessage)) //TODO create a different route for pm chat messages 
         setChatInput("")
     }
 
