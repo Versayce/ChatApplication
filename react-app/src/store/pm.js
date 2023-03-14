@@ -68,6 +68,7 @@ export const getChat = (chatId) => async (dispatch) => {
 };
 
 export const newChat = (chat) => async (dispatch) => {
+    console.log("in new chat thunk", chat)
     const res = await fetch('/api/chats/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { newChat } from '../store/pm';
 import { createPrivateServerAndChat, getAllServersByUserId } from '../store/server';
 
 // const userImageArray = [
@@ -35,8 +36,14 @@ function UsersList() {
     if (user1.id !== user2.id) {
       const sessionUserSessions = await fetch(`/api/servers/private/${user1.id}/${user2.id}`);
       const sessionUserSessionsData = await sessionUserSessions.json();
-      console.log('============= WHAT IS THIS?????? =============', sessionUserSessionsData)
+      console.log('============= WHAT IS THIS?????? =============', user1?.username)
+      const chatData = {
+        "user1Id": user1.id,
+        "user2Id": user2.id,
+        "name": `${user1?.username} and ${user2?.username}`
+      }
       if (sessionUserSessionsData?.existingPmChats) {
+        await dispatch(newChat(chatData))
         await dispatch(createPrivateServerAndChat(user1, user2)) //TODO redo this component
       } else {
         await dispatch(getAllServersByUserId(user1.id))

@@ -33,6 +33,7 @@ def pm_chat_by_user_id(id):
     return { 'chats': [chat.to_dict() for chat in pm_chats]}
 
 
+#TODO add another route similar to below for pm chatrooms
 @user_routes.route('/<int:user_id>/servers/<int:server_id>', methods=['POST'])
 @login_required
 def servers_associated_to_user(user_id, server_id):
