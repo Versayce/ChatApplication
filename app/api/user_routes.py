@@ -55,8 +55,27 @@ def servers_associated_to_user(user_id, server_id):
             # current_user['servers'] = [server.to_dict() for server in user.servers]
             # current_user['serversOwned'] = [server.to_dict() for server in user.server]
             # return current_user
+    
+# for adding a user to the chatroom created from a user initiating pm's 
+@user_routes.route('/<int:user_id>/chats/<int:chat_id>', methods=['POST'])
+@login_required
+def chats_associated_to_user(user_id, chat_id):
+        user = User.query.get(user_id)
+        chat = PmChat.query.get(chat_id)
+
+        if not user:
+            return { 'error': 'User not found', 'errorCode': 404 }, 404
+
+        if not chat:
+            return { 'error': 'Pm Chatroom not found', 'errorCode': 404 }, 404
+
+        if request.method == 'POST':
+            user.pm_chats.append(chat)
+            db.session.commit()
+            return { 'message': 'Successfully added Pm Chatroom to pm_chats'}
 
 
+# Returning user by querying for id
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
