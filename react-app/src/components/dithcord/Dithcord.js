@@ -29,10 +29,9 @@ function Dithcord() {
         <Wrapper>
             <Servers user={currentUser} servers={userServers} setToggleChat={setToggleChat} />
             <CurrentServer server={currentServer} toggleChat={toggleChat} setToggleChat={setToggleChat} />
-            <UsersList />
+            <UsersList setToggleChat={setToggleChat} />
         </Wrapper>
     )
-
 }
 
 
