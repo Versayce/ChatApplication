@@ -20,7 +20,7 @@ function CurrentChat({ chat, toggleChat }) {
 
     }, [dispatch, currentChat])
 
-    console.log('', '\n', '--------------CURRENT CHAtS COMPONENT DATA--------------', '\n', chatMessagesArray, '\n', '')
+    // console.log('', '\n', '--------------CURRENT CHAtS COMPONENT DATA--------------', '\n', chatMessagesArray, '\n', '')
 
     return (
         <MessageContainerWrapper>

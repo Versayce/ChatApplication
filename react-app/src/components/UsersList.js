@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newChat } from '../store/pm';
+import { joinChat, newChat } from '../store/pm';
 import { createPrivateServerAndChat, getAllServersByUserId } from '../store/server';
 
 // const userImageArray = [
@@ -44,6 +44,7 @@ function UsersList() {
       }
       if (sessionUserSessionsData?.existingPmChats) {
         await dispatch(newChat(chatData))
+        await dispatch(joinChat(chatData))
         await dispatch(createPrivateServerAndChat(user1, user2)) //TODO redo this component
       } else {
         await dispatch(getAllServersByUserId(user1.id))
