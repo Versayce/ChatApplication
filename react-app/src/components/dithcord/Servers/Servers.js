@@ -13,7 +13,7 @@ import { getAllChatsByUserId } from '../../../store/pm';
 function Servers({ user, servers, setToggleChat }) {
     const dispatch = useDispatch()
 
-    console.log('', '\n', '--------------SERVERS COMPONENT DATA--------------', '\n', user, '\n', '')
+    // console.log('', '\n', '--------------SERVERS COMPONENT DATA--------------', '\n', user, '\n', '')
 
     const handlePm = () => {
         // clear all server channels and channel messages + pm messages first

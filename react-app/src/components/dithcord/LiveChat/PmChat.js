@@ -18,7 +18,7 @@ const PmChat = () => {
     const currentChat = useSelector(state => state.pmchatrooms.oneChat) 
     const chatMessages = currentChat.messages
 
-    console.log('========PM CHAT========', currentChat.id)
+    // console.log('========PM CHAT========', currentChat.id)
 
     useEffect(() => {
         socket = io();

@@ -31,11 +31,13 @@ function UsersList() {
   }, []);
 
   const startPrivateChat = async (user1, user2) => {
+    console.log('STARTING PM CHAT')
     if (user1.id !== user2.id) {
       const sessionUserSessions = await fetch(`/api/servers/private/${user1.id}/${user2.id}`);
       const sessionUserSessionsData = await sessionUserSessions.json();
-      if (sessionUserSessionsData.userPrivateServerToUser.length < 1) {
-        await dispatch(createPrivateServerAndChat(user1, user2))
+      console.log('============= WHAT IS THIS?????? =============', sessionUserSessionsData)
+      if (sessionUserSessionsData?.existingPmChats) {
+        await dispatch(createPrivateServerAndChat(user1, user2)) //TODO redo this component
       } else {
         await dispatch(getAllServersByUserId(user1.id))
       }

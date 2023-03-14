@@ -14,7 +14,7 @@ function CurrentServer({ server, toggleChat, setToggleChat }) {
     const currentChannel = useSelector((state) => state.channels.oneChannel)
     const currentServer = useSelector((state) => state.servers.oneServer)
 
-    console.log('', '\n', '--------------CURRENT SERVERS COMPONENT DATA--------------', '\n', toggleChat, '\n', '')
+    // console.log('', '\n', '--------------CURRENT SERVERS COMPONENT DATA--------------', '\n', toggleChat, '\n', '')
 
     useEffect(() => {
         if(server.id) {

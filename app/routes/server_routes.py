@@ -77,5 +77,8 @@ def get_channels_by_server(id):
 def get_private_servers_user_list(user1Id, user2Id):
     user1 = User.query.get(user1Id)
     user2 = User.query.get(user2Id)
-    servers = Server.query.filter(Server.users.contains(user1), Server.users.contains(user2), Server.private == True).all()
-    return {'userPrivateServerToUser' : [server.to_dict() for server in servers]}
+    chats = Server.query.filter(Server.users.contains(user1), Server.users.contains(user2)).first()
+    if chats:
+        return { "error": "Pm Chatroom already exists", "errorCode" : 403 }, 403
+    else:
+        return {'existingPmChats' : [chat.to_dict() for chat in chats]}
