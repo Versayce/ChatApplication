@@ -43,6 +43,7 @@ def new_pm_chat():
 
     if form.validate_on_submit():
         new_pm_chat = PmChat()
+        print('WITHIN NEW CHAT ROUTE -------------- BACKEND --------------- ', new_pm_chat)
         form.populate_obj(new_pm_chat)
 
         db.session.add(new_pm_chat)

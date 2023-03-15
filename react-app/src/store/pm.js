@@ -69,6 +69,7 @@ export const getChat = (chatId) => async (dispatch) => {
 
 export const newChat = (chat) => async (dispatch) => {
     // console.log("in new chat thunk", chat)
+    const { user1Id, user2Id, name } = chat
     const res = await fetch('/api/chats/new', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -76,6 +77,13 @@ export const newChat = (chat) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
+        const { id } = data
+        const chat = {
+            id,
+            user1Id,
+            user2Id,
+        }
+        dispatch(joinChat(chat))
         dispatch(addChat(data));
         return data;
     };
@@ -84,7 +92,7 @@ export const newChat = (chat) => async (dispatch) => {
 //TODO finish creating join chat thunk: 
 export const joinChat = (chat) => async (dispatch) => {
     console.log("=== === User Joining Chatroom === ===", chat)
-    const res = await fetch(`/api/users/${userId}/chats/${chatId}`, {
+    const res = await fetch(`/api/users/${chat.user1Id}/chats/${chat.id}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(chat),
