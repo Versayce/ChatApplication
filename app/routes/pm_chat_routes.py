@@ -33,7 +33,7 @@ def pm_chat_by_id(id):
             db.session.commit()
             return {'message': 'Pm Chat Deleted!'}
 
-    return { "error": "Channel not found", "errorCode" : 404 }, 404
+    return { "error": "Chat not found", "errorCode" : 404 }, 404
 
 
 @pm_chat_bp.route('/new', methods=['POST'])
