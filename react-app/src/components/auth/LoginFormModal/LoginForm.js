@@ -72,11 +72,11 @@ const LoginForm = () => {
             <div className='user-buttons'>
               <button className='submit-button' id='left' onClick={() => {
                 setEmail('demo1@aa.io')
-                setPassword('password1')
+                setPassword('password')
               }}>DemoUser1</button>
               <button className='submit-button' id='right' onClick={() => {
                 setEmail('demo2@aa.io')
-                setPassword('password2')
+                setPassword('password')
               }}>DemoUser2</button>
             </div>
           </form>
