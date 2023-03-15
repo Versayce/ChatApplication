@@ -77,13 +77,14 @@ export const newChat = (chat) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
+        console.log("-- -- -- -- DATA RETURNED WITHIN NEW CHAT THUNK -- -- -- --", data)
         const { id } = data
-        const chat = {
+        const chatJoinData = {
             id,
             user1Id,
             user2Id,
         }
-        dispatch(joinChat(chat))
+        dispatch(joinChat(chatJoinData))
         dispatch(addChat(data));
         return data;
     };
