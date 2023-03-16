@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import PmChat, Message, db
+from ..models import PmChat, Message, User, db
 from ..forms.pm_chat_form import PmChatForm
 
 
@@ -64,3 +64,14 @@ def get_all_messages_by_channel_id(id):
         return messages_list
     else:
         return { "error": "Pm Chat not found", "errorCode" : 404 }, 404
+
+
+@pm_chat_bp.route('/checkavailability/<int:user1Id>/<int:user2Id>')
+def check_if_pm_exists(user1Id, user2Id):
+    user1 = User.query.get(user1Id)
+    user2 = User.query.get(user2Id)
+    chats = PmChat.query.filter(PmChat.pmchat_users.contains(user1), PmChat.pmchat_users.contains(user2)).all()
+    if chats:
+        return { "error": "Pm Chatroom already exists", "errorCode" : 403 }, 403
+    else:
+        return {'existingPmChats' : [chat.to_dict() for chat in chats]}

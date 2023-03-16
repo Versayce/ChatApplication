@@ -17,7 +17,7 @@ import { createPrivateServerAndChat, getAllServersByUserId } from '../store/serv
 //   'https://freddyo.com/wp-content/uploads/2014/10/image31.jpg'
 // ]
 
-function UsersList() {
+function UsersList({ setToggleChat }) {
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -34,20 +34,20 @@ function UsersList() {
   const startPrivateChat = async (user1, user2) => {
     console.log('STARTING PM CHAT')
     if (user1.id !== user2.id) {
-      const sessionUserSessions = await fetch(`/api/servers/private/${user1.id}/${user2.id}`);
-      const sessionUserSessionsData = await sessionUserSessions.json();
-      console.log('============= WHAT IS THIS?????? =============', sessionUserSessionsData)
+      const sessionUserChatsObj = await fetch(`/api/chats/checkavailability/${user1.id}/${user2.id}`);
+      const sessionUserChats = await sessionUserChatsObj.json();
+      console.log('TESTING CREATING A CHAT CHANNEL-=---------------------', sessionUserChats)
       const chatData = {
         "user1Id": user1.id,
         "user2Id": user2.id,
         "name": `${user1?.username} and ${user2?.username}`
       }
-      if (!sessionUserSessionsData?.existingPmChats.length) {
+      if (!sessionUserChats?.error) {
         await dispatch(newChat(chatData))
-        // await dispatch(joinChat(chatData))
-        // await dispatch(createPrivateServerAndChat(user1, user2)) //TODO redo this component
+        setToggleChat(true)
       } else {
         await dispatch(getAllServersByUserId(user1.id))
+        //TODO add logic to select the pm chatroom if it already exists. 
       }
     }
   }
