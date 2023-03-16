@@ -73,8 +73,9 @@ def chats_associated_to_user(user1_id, user2_id, chat_id):
         if request.method == 'PUT':
             user1.pm_chats.append(chat)
             user2.pm_chats.append(chat)
+            updatedChat = PmChat.query.get(chat_id)
             db.session.commit()
-            return { 'message': 'Successfully added Pm Chatroom to pm_chats'}
+            return updatedChat.to_dict()
 
 
 # Returning user by querying for id

@@ -22,6 +22,7 @@ export const loadChat = (chat) => {
 };
 
 export const addChat = (chat) => {
+    console.log('within addChat action =================', chat)
     return {
         type: ADD_CHAT,
         chat,
@@ -77,16 +78,25 @@ export const newChat = (chat) => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
-        console.log("-- -- -- -- DATA RETURNED WITHIN NEW CHAT THUNK -- -- -- --", data)
+        console.log("-- -- -- -- DATA RETURNED WITHIN NEW CHAT THUNK RES 1 -- -- -- --", data)
         const { id } = data
         const chatJoinData = {
             id,
             user1Id,
             user2Id,
         }
-        dispatch(joinChat(chatJoinData))
-        dispatch(addChat(data));
-        return data;
+        // dispatch(joinChat(chatJoinData))
+        // Hitting the join chat route to be sure that both users have the chat information appended to them
+        const joinChatRes = await fetch(`/api/users/${chatJoinData.user1Id}+${chatJoinData.user2Id}/chats/${chatJoinData.id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+        });
+        if(joinChatRes.ok) {
+            const data = await joinChatRes.json();
+            console.log("-- -- -- -- DATA RETURNED WITHIN NEW CHAT THUNK RES 2 -- -- -- --", data)
+            dispatch(addChat(data));
+            return data;
+        }
     };
 };
 
