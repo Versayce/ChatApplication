@@ -36,7 +36,7 @@ function UsersList({ setToggleChat }) {
     if (user1.id !== user2.id) {
       const sessionUserChatsObj = await fetch(`/api/chats/checkavailability/${user1.id}/${user2.id}`);
       const sessionUserChats = await sessionUserChatsObj.json();
-      console.log('TESTING CREATING A CHAT CHANNEL-=---------------------', sessionUserChats)
+      // console.log('TESTING CREATING A CHAT CHANNEL-=---------------------', sessionUserChats)
       const chatData = {
         "user1Id": user1.id,
         "user2Id": user2.id,

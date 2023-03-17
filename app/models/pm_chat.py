@@ -22,7 +22,7 @@ class PmChat(db.Model):
     
     # users = db.relationship('User', back_populates='chat')
     
-    pmchat_users = db.relationship('User', secondary=chat_users, back_populates="pm_chats", cascade="all, delete")
+    pmchat_users = db.relationship('User', secondary=chat_users, back_populates="pm_chats")
 
     def to_dict(self):
         return {

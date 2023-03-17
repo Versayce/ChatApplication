@@ -10,23 +10,24 @@ def pm_chat_by_id(id):
     pm_chat = PmChat.query.get(id)
 
     if pm_chat:
+        print('DELETE ROUTE IN BACKEND--------------------------------', pm_chat.to_dict())
 
         if request.method == 'GET':
             pm_chat_dict = pm_chat.to_dict()
             # pm_chat_dict['pm_messages'] = [message.to_dict() for message in pm_chat.pm_messages]
             return pm_chat_dict
 
-        if request.method == 'PUT':
-            form = PmChatForm()
-            form['csrf_token'].data = request.cookies['csrf_token']
+        # if request.method == 'PUT':
+        #     form = PmChatForm()
+        #     form['csrf_token'].data = request.cookies['csrf_token']
 
-            if form.validate_on_submit():
-                pm_chat.name = form.data['name']
-                pm_chat.private = form.data['private']
-                db.session.commit()
-                return pm_chat.to_dict()
-            else:
-                return form.errors
+        #     if form.validate_on_submit():
+        #         pm_chat.name = form.data['name']
+        #         pm_chat.private = form.data['private']
+        #         db.session.commit()
+        #         return pm_chat.to_dict()
+        #     else:
+        #         return form.errors
 
         if request.method == 'DELETE':
             db.session.delete(pm_chat)

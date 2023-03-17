@@ -120,7 +120,7 @@ export const destroyChat = (chatId, userId) => async dispatch => {
     });
     if (res.ok) {
         dispatch(deleteChat(chatId));
-        dispatch(getAllChatsByUserId(userId)); 
+        // dispatch(getAllChatsByUserId(userId)); 
         return { 'message' : 'Successfully Deleted' };
     };
 };
