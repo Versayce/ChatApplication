@@ -2,7 +2,6 @@ import React from 'react';
 import './Landing.css';
 import logo from '../images/dithcord_logo.png'
 import NotLoggedInParts from '../MiddleParts';
-import DropDownMenuFrontPage from '../DropDownMenu';
 import { partsArray } from '../data';
 import { NavLink } from 'react-router-dom';
 
@@ -46,23 +45,6 @@ const NotLogInLanding = () => {
                     <NavLink to='/sign-up'>
                     <button className='top-portion-button submit-button submit-button'>Thign Up Today!</button>
                     </NavLink>
-                </div>
-                <div className='actual-bottom-part'>
-
-                    <div className='bottom-portion'>
-                        {/* <div className='bottom-portion-top'>
-                            <div>IMAGINE A PLACE</div>
-                            <div>Englith, USA</div>
-                            <div>Thocial Media</div>
-                        </div> */}
-                        <DropDownMenuFrontPage />
-                    </div>
-                    {/* <div className='bottom-portion-bottom'>
-                        <div>Dithcord</div>
-
-                            <button>Thign Up</button>
-
-                    </div> */}
                 </div>
             </div>
         </div>
